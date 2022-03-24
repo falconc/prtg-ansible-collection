@@ -177,7 +177,10 @@ def main():
     if not device_id:
 
         # do an API call and get results
-        check_resp, check_info = api_call(module, '/api/table.json', {'content':'devices', 'output':'json', 'columns':'objid,device,host,group,active'})
+        check_resp, check_info = api_call(module, '/api/table.json',
+                                          {'content':'devices', 'output':'json',
+                                           'columns':'objid,device,host,group,active',
+                                           'count': '*'})
         
         if(validate_response(module, check_info) != 200):
             module.fail_json(msg='API request failed')
